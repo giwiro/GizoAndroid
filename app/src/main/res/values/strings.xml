@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Gizo</string>
+    <string name="registro_text">¿ Aún no tienes cuenta ?</string>
+    <string name="login_text">Tengo una cuenta</string>
+</resources>
