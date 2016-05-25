@@ -2,16 +2,21 @@ package presenters;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.giwahdavalos.gizo.R;
+import com.google.gson.Gson;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import components.DaggerLoginComponent;
+import components.LoginComponent;
+import modules.PreferencesEditorModule;
+import modules.PreferencesModule;
 import rest.RestAdapter;
 import rest.models.Usuario;
 import rest.services.LoginService;
@@ -19,29 +24,50 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import ui.activities.Colecciones;
-import ui.activities.Login;
 import ui.activities.LoginView;
+import utils.SessionHelper;
 
 /**
  * Created by Gi Wah Davalos on 15/05/2016.
  */
 public class LoginPresenter {
 
-
+    TextView registro_text;
     Button login_button;
     EditText email;
     EditText password;
+    ProgressBar progressBar;
+
 
     private LoginView loginView;
     private LoginService loginService;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     public LoginPresenter(LoginView loginView) {
         this.loginView = loginView;
         this.login_button = (Button) ((Activity)loginView).findViewById(R.id.login_button);
         this.email = (EditText) ((Activity)loginView).findViewById(R.id.email);
         this.password = (EditText) ((Activity)loginView).findViewById(R.id.password);
+        this.registro_text = (TextView) ((Activity)loginView).findViewById(R.id.registro_text);
+        this.progressBar = (ProgressBar) ((Activity)loginView).findViewById(R.id.progressBar);
+
+        LoginComponent component
+                = DaggerLoginComponent
+                    .builder()
+                    .preferencesModule(new PreferencesModule(((Activity) loginView).getApplicationContext()))
+                    .preferencesEditorModule(new PreferencesEditorModule(((Activity) loginView).getApplicationContext()))
+                    .build();
+
+        pref = component.providePreferences();
+        editor = component.provideSharedPrefsEditor();
 
         loginService = RestAdapter.getInstance().create(LoginService.class);
+
+        Gson gson = new Gson();
+        String serialized_user = pref.getString("usuario", "");
+
+        Log.e("serialized_user", "<-" + serialized_user );
     }
 
     public void executeLogin(String email_txt, String password_txt) {
@@ -70,12 +96,16 @@ public class LoginPresenter {
                     @Override
                     public void onNext(Usuario usuario) {
                         //enableElements();
+
+                        SessionHelper.writeSession(editor, usuario);
+
                         Toast.makeText((Activity)loginView, "Autenticación correcta",
                                 Toast.LENGTH_LONG).show();
 
                         Intent goToA = new Intent( (Activity)loginView , Colecciones.class);
                         goToA.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         ((Activity)loginView).startActivity(goToA);
+                        ((Activity)loginView).finish();
 
                         Log.e("USUARIO", usuario.toString());
                     }
@@ -95,11 +125,17 @@ public class LoginPresenter {
 
 
     public void enableElements() {
-        this.login_button.setEnabled(true);
+
+        this.login_button.setVisibility(Button.VISIBLE);
         this.login_button.setClickable(true);
 
-        this.email.setEnabled(true);
-        this.password.setEnabled(true);
+        this.email.setVisibility(TextView.VISIBLE);
+
+        this.password.setVisibility(TextView.VISIBLE);
         this.password.setText("");
+
+        this.registro_text.setVisibility(TextView.VISIBLE);
+
+        this.progressBar.setVisibility(ProgressBar.GONE);
     }
 }

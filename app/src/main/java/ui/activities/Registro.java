@@ -2,9 +2,14 @@ package ui.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.giwahdavalos.gizo.R;
 
@@ -32,6 +37,9 @@ public class Registro extends AppCompatActivity implements RegistroView{
     @BindView(R.id.password)
     EditText password;
 
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
     RegistroPresenter registroPresenter;
 
     @Override
@@ -56,16 +64,38 @@ public class Registro extends AppCompatActivity implements RegistroView{
 
             registroPresenter.executeRegistro(nombres_txt, apellidos_txt, email_txt, password_txt);
         });
+
+        password.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    registro_button.performClick();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     @Override
     public void disableElements() {
-        this.registro_button.setEnabled(false);
+
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+        this.registro_button.setVisibility(Button.GONE);
         this.registro_button.setClickable(false);
 
-        this.nombres.setEnabled(false);
-        this.apellidos.setEnabled(false);
-        this.email.setEnabled(false);
-        this.password.setEnabled(false);
+        this.nombres.setVisibility(TextView.GONE);
+        this.apellidos.setVisibility(TextView.GONE);
+        this.email.setVisibility(TextView.GONE);
+        this.password.setVisibility(TextView.GONE);
+        this.go_login_button.setVisibility(LinearLayout.GONE);
+
+        this.progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 }

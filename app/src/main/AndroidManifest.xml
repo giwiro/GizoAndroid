@@ -13,7 +13,8 @@
         <activity
             android:name="ui.activities.MainActivity"
             android:noHistory="true"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/MainTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
