@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.giwahdavalos.gizo.R;
+
+import org.opencv.android.OpenCVLoader;
 
 import components.DaggerMainComponent;
 import components.MainComponent;
@@ -16,6 +19,14 @@ import utils.SessionHelper;
 public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences pref;
+
+    static {
+        if (!OpenCVLoader.initDebug()) {
+            Log.e("OPENCV!", "not loaded :(");
+        }else{
+            Log.e("OPENCV!", "LOADED !");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

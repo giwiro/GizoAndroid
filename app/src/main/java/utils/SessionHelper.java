@@ -11,7 +11,7 @@ import rest.models.Usuario;
  */
 public class SessionHelper {
 
-    private final String USUARIO_TAG = "usuario";
+    private final static String USUARIO_TAG = "usuario";
 
     public static void writeSession(SharedPreferences.Editor editor, Usuario usuario) {
         Gson gson = new Gson();
