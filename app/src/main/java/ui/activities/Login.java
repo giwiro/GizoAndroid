@@ -3,8 +3,11 @@ package ui.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.giwahdavalos.gizo.R;
@@ -26,6 +29,9 @@ public class Login extends AppCompatActivity implements LoginView{
 
     @BindView(R.id.password)
     EditText password;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
 
     LoginPresenter loginPresenter;
 
@@ -56,11 +62,22 @@ public class Login extends AppCompatActivity implements LoginView{
 
     @Override
     public void disableElements() {
-        this.login_button.setEnabled(false);
+
+        try {
+            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        this.login_button.setVisibility(Button.GONE);
         this.login_button.setClickable(false);
 
-        this.email.setEnabled(false);
+        this.email.setVisibility(TextView.GONE);
 
-        this.password.setEnabled(false);
+        this.password.setVisibility(TextView.GONE);
+
+        this.registro_text.setVisibility(TextView.GONE);
+
+        this.progressBar.setVisibility(ProgressBar.VISIBLE);
     }
 }
