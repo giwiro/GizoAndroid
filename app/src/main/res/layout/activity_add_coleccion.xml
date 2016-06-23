@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        app:theme="@style/ColeccionesAppBarTheme"
-        android:id="@+id/appBar">
+        android:id="@+id/appBar"
+        app:theme="@style/AddColeccionAppBarTheme">
 
         <!--<include
             android:id="@+id/tool_bar"
@@ -27,13 +27,13 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tool_bar"
-            app:popupTheme="@style/ColeccionesToolBarTheme">
+            android:id="@+id/toolbar"
+            app:popupTheme="@style/AddColeccionToolBarTheme">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/title_colecciones"
+                android:text="@string/title_add_coleccion"
                 android:textSize="@dimen/toolbar_title_size"
                 android:layout_gravity="center"
                 android:id="@+id/toolbar_title" />
@@ -41,35 +41,38 @@
         </android.support.v7.widget.Toolbar>
 
 
-        <!--<include layout="@layout/widget_search_bar"/>-->
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/empty_colecciones"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_texto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/grayLight"
         android:layout_below="@id/appBar"
-        android:gravity="center_horizontal"
-        android:visibility="gone"
-        android:textSize="@dimen/empty_colecciones_size"
-        android:layout_marginTop="@dimen/empty_colecciones_margin_top"
-        android:text="@string/empty_colecciones"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/colecciones_list"
-        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/input_layout_texto_margin_top"
+        android:layout_marginLeft="@dimen/input_layout_texto_margin_sides"
+        android:layout_marginRight="@dimen/input_layout_texto_margin_sides">
+
+        <EditText
+            android:id="@+id/input_texto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapSentences"
+            android:hint="Oración" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appBar">
-
-
-
-    </android.support.v7.widget.RecyclerView>
-
-
-
-
+        android:layout_below="@id/input_layout_texto"
+        android:text="Guardar"
+        android:id="@+id/add_button"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/add_coleccion_margin_top"
+        android:layout_marginBottom="@dimen/add_coleccion_margin_bottom"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

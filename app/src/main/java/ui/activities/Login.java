@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity implements LoginView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.LoginTheme);
+        //setTheme(R.style.LoginTheme);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
 
@@ -49,12 +49,10 @@ public class Login extends AppCompatActivity implements LoginView{
             startActivity(i);
         } );
 
-        login_button.setOnClickListener( (View) -> {
+        login_button.setOnClickListener( v -> {
             this.disableElements();
-
             String email_txt = email.getText().toString();
             String password_txt = password.getText().toString();
-
             loginPresenter.executeLogin(email_txt, password_txt);
         });
     }
@@ -73,11 +71,33 @@ public class Login extends AppCompatActivity implements LoginView{
         this.login_button.setClickable(false);
 
         this.email.setVisibility(TextView.GONE);
-
         this.password.setVisibility(TextView.GONE);
-
         this.registro_text.setVisibility(TextView.GONE);
-
         this.progressBar.setVisibility(ProgressBar.VISIBLE);
+    }
+
+    @Override
+    public boolean canSubmit() {
+        String email_txt = email.getText().toString();
+        String password_txt = password.getText().toString();
+
+        if (email_txt.length() > 0 && password_txt.length() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public void enableElements() {
+
+        this.login_button.setVisibility(Button.VISIBLE);
+        this.login_button.setClickable(true);
+
+        this.email.setVisibility(TextView.VISIBLE);
+        this.password.setVisibility(TextView.VISIBLE);
+        this.password.setText("");
+        this.registro_text.setVisibility(TextView.VISIBLE);
+        this.progressBar.setVisibility(ProgressBar.GONE);
     }
 }

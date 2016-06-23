@@ -5,4 +5,6 @@ package ui.activities;
  */
 public interface RegistroView {
     void disableElements();
+    boolean canSubmit();
+    void enableElements();
 }

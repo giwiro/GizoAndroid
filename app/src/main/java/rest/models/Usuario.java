@@ -1,5 +1,7 @@
 package rest.models;
 
+import java.util.List;
+
 /**
  * Created by Gi Wah Davalos on 15/05/2016.
  */
@@ -10,13 +12,15 @@ public class Usuario {
     String apellidos;
     String email;
     String password;
+    List<Coleccion> colecciones;
 
-    public Usuario(String _id, String nombres, String apellidos, String email, String password) {
+    public Usuario(String _id, String nombres, String apellidos, String email, String password, List<Coleccion> colecciones) {
         this._id = _id;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.email = email;
         this.password = password;
+        this.colecciones = colecciones;
     }
 
     public String get_id() {
@@ -57,6 +61,14 @@ public class Usuario {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Coleccion> getColecciones() {
+        return colecciones;
+    }
+
+    public void setColecciones(List<Coleccion> colecciones) {
+        this.colecciones = colecciones;
     }
 
     @Override

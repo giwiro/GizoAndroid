@@ -16,4 +16,23 @@
     <dimen name="registro_icono_margin_right">6dp</dimen>
 
     <dimen name="progress_bar_margin_top">20dp</dimen>
+
+    <dimen name="toolbar_title_size">20dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- Add Coleccion -->
+    <dimen name="add_coleccion_margin_top">20dp</dimen>
+    <dimen name="add_coleccion_margin_bottom">40dp</dimen>
+
+    <dimen name="input_layout_texto_margin_top">20dp</dimen>
+    <dimen name="input_layout_texto_margin_sides">10dp</dimen>
+
+    <!-- Coleccion -->
+    <dimen name="row_min_height">72dp</dimen>
+    <dimen name="title_size">20dp</dimen>
+    <dimen name="subtitle_size">13dp</dimen>
+    <dimen name="empty_colecciones_margin_top">30dp</dimen>
+    <dimen name="empty_colecciones_size">18dp</dimen>
+
 </resources>

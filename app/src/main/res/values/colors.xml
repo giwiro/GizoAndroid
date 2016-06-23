@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="white">#FFF</color>
+    <color name="colorPrimaryLight">#668ab9</color>
     <color name="colorPrimary">#2D5F9A</color>
     <color name="colorPrimaryDark">#FF003D84</color>
-    <color name="colorAccent">#DE9F4E</color>
 
+    <color name="colorAccentLight">#dfb278</color>
+    <color name="colorAccent">#DE9F4E</color>
     <color name="colorAccentDark">#DA7A40</color>
 
 
     <color name="hint_text_color">#cacaca</color>
     <color name="input_text_color">#636363</color>
+
+
+    <color name="grayDark">#646464</color>
+    <color name="grayLight">#a7a7a7</color>
 
 </resources>

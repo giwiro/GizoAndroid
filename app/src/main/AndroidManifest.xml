@@ -13,8 +13,8 @@
         <activity
             android:name="ui.activities.MainActivity"
             android:noHistory="true"
-            android:windowSoftInputMode="stateHidden"
-            android:theme="@style/MainTheme">
+            android:theme="@style/MainTheme"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,11 +23,20 @@
         </activity>
         <activity
             android:name="ui.activities.Login"
+            android:theme="@style/LoginTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="ui.activities.Registro"
+            android:theme="@style/RegistroTheme"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity android:name="ui.activities.Colecciones"></activity>
+        <activity
+            android:name="ui.activities.Colecciones"
+            android:theme="@style/ColeccionesTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity
+            android:name="ui.activities.AddColeccion"
+            android:label="@string/title_activity_add_coleccion"
+            android:theme="@style/AddColeccionTheme"></activity>
     </application>
 
 </manifest>

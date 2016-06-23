@@ -45,16 +45,16 @@ public class Registro extends AppCompatActivity implements RegistroView{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(R.style.RegistroTheme);
+        //setTheme(R.style.RegistroTheme);
         setContentView(R.layout.activity_registro);
 
         ButterKnife.bind(this);
 
         registroPresenter = new RegistroPresenter(this);
 
-        go_login_button.setOnClickListener((View) -> finish());
+        go_login_button.setOnClickListener( v -> finish());
 
-        registro_button.setOnClickListener((View) -> {
+        registro_button.setOnClickListener( v -> {
             this.disableElements();
 
             String nombres_txt = nombres.getText().toString();
@@ -97,5 +97,37 @@ public class Registro extends AppCompatActivity implements RegistroView{
         this.go_login_button.setVisibility(LinearLayout.GONE);
 
         this.progressBar.setVisibility(ProgressBar.VISIBLE);
+    }
+
+    @Override
+    public boolean canSubmit() {
+        String nombres_txt = nombres.getText().toString();
+        String apellidos_txt = apellidos.getText().toString();
+        String email_txt = email.getText().toString();
+        String password_txt = password.getText().toString();
+
+        if (nombres_txt.length() > 0 &&
+                apellidos_txt.length() > 0 &&
+                email_txt.length() > 0 &&
+                password_txt.length() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    @Override
+    public void enableElements() {
+
+        this.registro_button.setVisibility(Button.VISIBLE);
+        this.registro_button.setClickable(true);
+
+        this.nombres.setVisibility(TextView.VISIBLE);
+        this.apellidos.setVisibility(TextView.VISIBLE);
+        this.email.setVisibility(TextView.VISIBLE);
+        this.password.setVisibility(TextView.VISIBLE);
+        this.go_login_button.setVisibility(LinearLayout.VISIBLE);
+
+        this.progressBar.setVisibility(ProgressBar.GONE);
     }
 }

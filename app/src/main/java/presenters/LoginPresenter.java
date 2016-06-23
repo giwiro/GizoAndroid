@@ -25,19 +25,13 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import ui.activities.Colecciones;
 import ui.activities.LoginView;
+import utils.ColeccionHelper;
 import utils.SessionHelper;
 
 /**
  * Created by Gi Wah Davalos on 15/05/2016.
  */
 public class LoginPresenter {
-
-    TextView registro_text;
-    Button login_button;
-    EditText email;
-    EditText password;
-    ProgressBar progressBar;
-
 
     private LoginView loginView;
     private LoginService loginService;
@@ -46,11 +40,6 @@ public class LoginPresenter {
 
     public LoginPresenter(LoginView loginView) {
         this.loginView = loginView;
-        this.login_button = (Button) ((Activity)loginView).findViewById(R.id.login_button);
-        this.email = (EditText) ((Activity)loginView).findViewById(R.id.email);
-        this.password = (EditText) ((Activity)loginView).findViewById(R.id.password);
-        this.registro_text = (TextView) ((Activity)loginView).findViewById(R.id.registro_text);
-        this.progressBar = (ProgressBar) ((Activity)loginView).findViewById(R.id.progressBar);
 
         LoginComponent component
                 = DaggerLoginComponent
@@ -64,15 +53,15 @@ public class LoginPresenter {
 
         loginService = RestAdapter.getInstance().create(LoginService.class);
 
-        Gson gson = new Gson();
+        /*Gson gson = new Gson();
         String serialized_user = pref.getString("usuario", "");
 
-        Log.e("serialized_user", "<-" + serialized_user );
+        Log.e("serialized_user", "<-" + serialized_user );*/
     }
 
     public void executeLogin(String email_txt, String password_txt) {
-        if (!canSubmit()) {
-            enableElements();
+        if (!loginView.canSubmit()) {
+            loginView.enableElements();
             return;
         }
         loginService
@@ -87,7 +76,7 @@ public class LoginPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        enableElements();
+                        loginView.enableElements();
                         Toast.makeText((Activity)loginView, e.getMessage(),
                                 Toast.LENGTH_LONG).show();
                         Log.e("ERROR", e.getMessage());
@@ -98,6 +87,7 @@ public class LoginPresenter {
                         //enableElements();
 
                         SessionHelper.writeSession(editor, usuario);
+                        ColeccionHelper.writeColecciones(editor, usuario.getColecciones());
 
                         Toast.makeText((Activity)loginView, "Autenticación correcta",
                                 Toast.LENGTH_LONG).show();
@@ -112,30 +102,4 @@ public class LoginPresenter {
                 });
     }
 
-    public boolean canSubmit() {
-        String email_txt = email.getText().toString();
-        String password_txt = password.getText().toString();
-
-        if (email_txt.length() > 0 && password_txt.length() > 0) {
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-    public void enableElements() {
-
-        this.login_button.setVisibility(Button.VISIBLE);
-        this.login_button.setClickable(true);
-
-        this.email.setVisibility(TextView.VISIBLE);
-
-        this.password.setVisibility(TextView.VISIBLE);
-        this.password.setText("");
-
-        this.registro_text.setVisibility(TextView.VISIBLE);
-
-        this.progressBar.setVisibility(ProgressBar.GONE);
-    }
 }
