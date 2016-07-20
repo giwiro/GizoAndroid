@@ -3,8 +3,6 @@ package ui.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -15,8 +13,10 @@ import com.example.giwahdavalos.gizo.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import presenters.LoginPresenter;
+import ui.ghosts.LoginView;
+import utils.SoftKeyboard;
 
-public class Login extends AppCompatActivity implements LoginView{
+public class Login extends AppCompatActivity implements LoginView {
 
     @BindView(R.id.registro_text)
     TextView registro_text;
@@ -61,12 +61,7 @@ public class Login extends AppCompatActivity implements LoginView{
     @Override
     public void disableElements() {
 
-        try {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        SoftKeyboard.hideKeyboard(this);
         this.login_button.setVisibility(Button.GONE);
         this.login_button.setClickable(false);
 

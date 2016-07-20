@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ui.activities.DetallePictograma">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/card_image"
+            android:scaleType="fitStart"
+            android:adjustViewBounds="true"
+            android:src="@drawable/placeholder"
+            android:transitionName="image"
+            android:layout_margin="0dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/card_image"
+            android:padding="@dimen/card_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/titulo_pictograma"
+                android:transitionName="title"
+                android:textSize="@dimen/card_title_size"/>
+
+
+            <!--<TextView
+                android:id="@+id/no_sound_text"
+                android:layout_marginTop="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/titulo_pictograma"
+                android:gravity="center_horizontal"
+                android:text="@string/no_sound"/>-->
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titulo_pictograma"
+                android:text="Reproducir sonido"
+                android:id="@+id/play_sound"
+                android:textColor="@color/white"
+                android:layout_marginTop="@dimen/add_sound_button_margin_top"
+                android:layout_marginBottom="@dimen/add_sound_button_margin_bottom"
+                android:drawableLeft="@drawable/ic_play_arrow_white_24dp"
+                android:layout_centerHorizontal="true"/>
+
+            <!--<android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:transitionName="transition_reveal_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/red"
+                android:clickable="true"
+                app:fabSize="normal"
+                app:layout_behavior="com.droidsonroids.materialshowcase.utils.FabLayoutBehavior"
+                app:layout_anchorGravity="bottom|right|end"
+                android:layout_margin="@dimen/fab_sound_margin"
+                android:src="@drawable/ic_mic_white_24dp"
+                android:layout_below="@+id/no_sound_text"
+                android:layout_centerHorizontal="true" />-->
+
+            <!--<android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_margin="@dimen/activity_horizontal_margin"
+                android:clickable="true"
+                android:transitionName="transition_reveal_contact"
+                android:src="@drawable/ic_mic_white_24dp"
+                app:fabSize="normal"
+                app:layout_behavior="com.droidsonroids.materialshowcase.utils.FabLayoutBehavior"
+                app:layout_anchorGravity="bottom|right|end"
+                app:backgroundTint="@color/red"
+                />
+-->
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFF</color>
+    <color name="whiteAlpha">#48FFFFFF</color>
     <color name="colorPrimaryLight">#668ab9</color>
     <color name="colorPrimary">#2D5F9A</color>
     <color name="colorPrimaryDark">#FF003D84</color>
@@ -16,5 +17,10 @@
 
     <color name="grayDark">#646464</color>
     <color name="grayLight">#a7a7a7</color>
+
+    <color name="success">#2fcc71</color>
+
+    <color name="red">#F44336</color>
+    <color name="redDark">#B71C1C</color>
 
 </resources>

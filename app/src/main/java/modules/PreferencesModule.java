@@ -16,7 +16,7 @@ import dagger.Provides;
 @Module
 public class PreferencesModule {
 
-    Context ctx;
+    private Context ctx;
 
     public PreferencesModule(Context ctx) {
         this.ctx = ctx;

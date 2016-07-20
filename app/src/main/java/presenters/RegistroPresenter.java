@@ -4,14 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.giwahdavalos.gizo.R;
 
 import components.DaggerRegistroComponent;
 import components.RegistroComponent;
@@ -23,7 +16,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import ui.activities.Colecciones;
-import ui.activities.RegistroView;
+import ui.ghosts.RegistroView;
 import utils.SessionHelper;
 
 /**

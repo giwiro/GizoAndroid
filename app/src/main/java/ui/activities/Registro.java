@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,8 +15,10 @@ import com.example.giwahdavalos.gizo.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import presenters.RegistroPresenter;
+import ui.ghosts.RegistroView;
+import utils.SoftKeyboard;
 
-public class Registro extends AppCompatActivity implements RegistroView{
+public class Registro extends AppCompatActivity implements RegistroView {
 
     @BindView(R.id.go_login_button)
     LinearLayout go_login_button;
@@ -80,12 +81,7 @@ public class Registro extends AppCompatActivity implements RegistroView{
     @Override
     public void disableElements() {
 
-        try {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        SoftKeyboard.hideKeyboard(this);
 
         this.registro_button.setVisibility(Button.GONE);
         this.registro_button.setClickable(false);

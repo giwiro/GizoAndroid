@@ -4,14 +4,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.giwahdavalos.gizo.R;
-import com.google.gson.Gson;
+import java.util.ArrayList;
+import java.util.List;
 
 import components.DaggerLoginComponent;
 import components.LoginComponent;
@@ -24,7 +20,7 @@ import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import ui.activities.Colecciones;
-import ui.activities.LoginView;
+import ui.ghosts.LoginView;
 import utils.ColeccionHelper;
 import utils.SessionHelper;
 
@@ -76,10 +72,17 @@ public class LoginPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        loginView.enableElements();
-                        Toast.makeText((Activity)loginView, e.getMessage(),
-                                Toast.LENGTH_LONG).show();
-                        Log.e("ERROR", e.getMessage());
+
+                        try {
+                            loginView.enableElements();
+                            Toast.makeText((Activity) loginView, e.getMessage(),
+                                    Toast.LENGTH_LONG).show();
+                            Log.e("ERROR", e.getMessage());
+                        }catch(Throwable ex) {
+                            // Log the exception
+                            Log.e("ERROR", ex.getMessage());
+                            ex.printStackTrace();
+                        }
                     }
 
                     @Override
@@ -87,6 +90,7 @@ public class LoginPresenter {
                         //enableElements();
 
                         SessionHelper.writeSession(editor, usuario);
+
                         ColeccionHelper.writeColecciones(editor, usuario.getColecciones());
 
                         Toast.makeText((Activity)loginView, "Autenticación correcta",

@@ -3,6 +3,13 @@
     package="com.example.giwahdavalos.gizo">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -36,7 +43,25 @@
         <activity
             android:name="ui.activities.AddColeccion"
             android:label="@string/title_activity_add_coleccion"
-            android:theme="@style/AddColeccionTheme"></activity>
+            android:theme="@style/AddColeccionTheme" />
+        <activity
+            android:name="ui.activities.DetalleColeccion"
+            android:label="DetalleColeccion"
+            android:theme="@style/DetalleColeccionTheme" />
+        <activity
+            android:name="ui.activities.EditarColeccion"
+            android:label="EditarColeccion"
+            android:theme="@style/EditarColeccionTheme" />
+        <activity
+            android:name="ui.activities.DetallePictograma"
+            android:label="DetallePictograma"
+            android:screenOrientation="portrait"
+            android:theme="@style/DetallePictogramaTheme" />
+        <activity
+            android:name="ui.activities.RecordSound"
+            android:screenOrientation="portrait"
+            android:theme="@style/DetalleRecordSoundTheme" />
+        <activity android:name="ui.activities.Blank"></activity>
     </application>
 
 </manifest>

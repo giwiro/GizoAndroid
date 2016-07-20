@@ -9,7 +9,7 @@ import components.ColeccionesComponent;
 import components.DaggerColeccionesComponent;
 import modules.PreferencesModule;
 import rest.models.Coleccion;
-import ui.activities.ColeccionesView;
+import ui.ghosts.ColeccionesView;
 import utils.ColeccionHelper;
 
 /**

@@ -6,10 +6,21 @@
 
     <string name="title_colecciones">Colecciones</string>
     <string name="title_add_coleccion">Nueva colección</string>
+    <string name="title_editar_coleccion">Editar colección</string>
+
+    <!-- Audio -->
+    <string name="no_sound">Aún no ha grabado ningún sonido.\nLo puede hacer presionando el botón rojo</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_add_coleccion">AddColeccion</string>
 
     <string name="empty_colecciones">No hay colecciones para mostrar.</string>
+    <string name="empty_pictogramas">No hay pictogramas para mostrar.</string>
+
+    <string name="new_pictograma_title">Crear pictograma</string>
+    <string name="new_pictograma_subtitle">Ingrese el nombre del pictograma</string>
+    <string name="new_pictograma_hint">Nombre del pictograma</string>
+    <string name="new_pictograma_button">Capturar pictograma</string>
+
+    <string name="recording_text">Tiempo de gabración</string>
 </resources>

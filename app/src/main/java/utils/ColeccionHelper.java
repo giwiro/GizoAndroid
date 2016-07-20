@@ -46,4 +46,40 @@ public class ColeccionHelper {
 
         return colecciones;
     }
+
+    public static int getColeccionPosition(SharedPreferences pref, String _id) {
+        List<Coleccion> colecciones = getColecciones(pref);
+        int rpta = -1;
+        for (Coleccion coleccion : colecciones) {
+            if (coleccion.get_id().equals(_id)) {
+                rpta = colecciones.indexOf(coleccion);
+                break;
+            }
+            //productMap.put(product.getProductCode(), product);
+        }
+        return rpta;
+    }
+
+    public static Coleccion getColeccionObject(SharedPreferences pref, String _id) {
+        List<Coleccion> colecciones = getColecciones(pref);
+        Coleccion rpta = null;
+        for (Coleccion coleccion : colecciones) {
+            if (coleccion.get_id().equals(_id)) {
+                rpta = coleccion;
+                break;
+            }
+            //productMap.put(product.getProductCode(), product);
+        }
+        return rpta;
+    }
+
+    public static void updateColeccion(SharedPreferences.Editor editor, SharedPreferences pref, Coleccion coleccion){
+        int pos = getColeccionPosition(pref, coleccion.get_id());
+
+        if (pos != -1) {
+            List<Coleccion> colecciones = getColecciones(pref);
+            colecciones.set(pos, coleccion);
+            writeColecciones(editor, colecciones);
+        }
+    }
 }

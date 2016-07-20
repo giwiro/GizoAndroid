@@ -1,11 +1,12 @@
 package rest.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Gi Wah Davalos on 15/05/2016.
  */
-public class Usuario {
+public class Usuario implements Serializable{
 
     String _id;
     String nombres;

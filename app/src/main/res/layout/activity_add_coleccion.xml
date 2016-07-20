@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.activities.Colecciones"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="ui.activities.AddColeccion"
     android:background="@color/white">
 
     <android.support.design.widget.AppBarLayout
@@ -63,7 +63,7 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <Button
+    <!--<Button
         android:layout_width="@dimen/input_width"
         android:layout_height="wrap_content"
         android:layout_below="@id/input_layout_texto"
@@ -72,7 +72,18 @@
         android:textColor="@color/white"
         android:layout_marginTop="@dimen/add_coleccion_margin_top"
         android:layout_marginBottom="@dimen/add_coleccion_margin_bottom"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"/>-->
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        app:backgroundTint="@color/success"
+        android:clickable="true"
+        android:src="@drawable/ic_save_white_24dp" />
 
 </RelativeLayout>

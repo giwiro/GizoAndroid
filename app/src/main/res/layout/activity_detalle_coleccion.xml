@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.activities.DetalleColeccion">
+
+
+    <android.support.design.widget.AppBarLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:theme="@style/DetalleColeccionAppBarTheme"
+        android:id="@+id/appBar">
+
+        <!--<include
+            android:id="@+id/tool_bar"
+            layout="@layout/colecciones_bar"></include>-->
+
+        <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/toolbar"
+            app:popupTheme="@style/DetalleColeccionToolBarTheme">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/toolbar_title_size"
+                android:layout_gravity="center"
+                android:id="@+id/toolbar_title" />
+
+        </android.support.v7.widget.Toolbar>
+
+
+        <!--<include layout="@layout/widget_search_bar"/>-->
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/empty_pictogramas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/grayLight"
+        android:layout_below="@id/appBar"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        android:textSize="@dimen/empty_colecciones_size"
+        android:layout_marginTop="@dimen/empty_colecciones_margin_top"
+        android:text="@string/empty_pictogramas"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/pictogramas_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:layout_below="@+id/appBar">
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        android:clickable="true"
+        android:src="@drawable/ic_add_white_24dp" />
+
+</RelativeLayout>

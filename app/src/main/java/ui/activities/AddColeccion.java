@@ -2,23 +2,21 @@ package ui.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.giwahdavalos.gizo.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import presenters.AddColeccionPresenter;
+import ui.ghosts.AddColeccionView;
+import utils.SoftKeyboard;
 
-public class AddColeccion extends AppCompatActivity implements AddColeccionView{
+public class AddColeccion extends AppCompatActivity implements AddColeccionView {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -27,7 +25,7 @@ public class AddColeccion extends AppCompatActivity implements AddColeccionView{
     EditText input_texto;
 
     @BindView(R.id.add_button)
-    Button add_button;
+    FloatingActionButton add_button;
 
     private AddColeccionPresenter addColeccionPresenter;
 
@@ -35,9 +33,9 @@ public class AddColeccion extends AppCompatActivity implements AddColeccionView{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_coleccion);
-        addColeccionPresenter = new AddColeccionPresenter(this);
 
         ButterKnife.bind(this);
+        addColeccionPresenter = new AddColeccionPresenter(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -56,12 +54,7 @@ public class AddColeccion extends AppCompatActivity implements AddColeccionView{
 
     @Override
     public void disableElements() {
-        try {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        SoftKeyboard.hideKeyboard(this);
         this.add_button.setEnabled(false);
         this.add_button.setClickable(false);
 
@@ -85,5 +78,10 @@ public class AddColeccion extends AppCompatActivity implements AddColeccionView{
         this.add_button.setClickable(true);
 
         this.input_texto.setEnabled(true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }
