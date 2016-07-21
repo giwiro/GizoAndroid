@@ -26,8 +26,8 @@ public class RestAdapter {
                     .build();
 
             sharedInstance = new Retrofit.Builder()
-                    //.baseUrl("https://gizo.herokuapp.com")
-                    .baseUrl("http://192.168.0.101")
+                    .baseUrl("https://gizo.herokuapp.com")
+                    //.baseUrl("http://192.168.0.101")
                     //.baseUrl("http://192.168.1.35")
                     .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
